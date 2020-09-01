@@ -17,6 +17,11 @@ gen
 build
 rebel.xml
 
+### macOS template
+*.DS_Store
+.AppleDouble
+.LSOverride
+
 # Log file
 *.log
 
