@@ -4,6 +4,9 @@ server:
 
 spring:
   profiles: default
+  h2:
+    console:
+      enabled: true
   jpa:
     properties:
       hibernate:
