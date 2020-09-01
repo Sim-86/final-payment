@@ -15,6 +15,7 @@ public class Payment {
     private Double totalPrice;
     private String paymentStatus;
     private String paymentType;
+    private Long seatId;
 
     @PostPersist
     public void onPostPersist(){
@@ -71,7 +72,12 @@ public class Payment {
         this.paymentType = paymentType;
     }
 
+    public Long getSeatId() {
+        return seatId;
+    }
 
-
+    public void setSeatId(Long seatId) {
+        this.seatId = seatId;
+    }
 
 }

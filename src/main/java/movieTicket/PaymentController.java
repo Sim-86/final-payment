@@ -16,12 +16,15 @@ import java.util.List;
   //static final Long makePaymentSuccess = 1L;
   static final Long makePaymentFail = 0L;
 
-  // 결재 정보 생성  예약이 되었을때는 생성만 필요할듯??
+  // 결재 정보 생성  예약이 되었을때는 생성만 필요할듯
   @PostMapping("/payments/paymentInsert")
   public Long paymentInsert(@RequestBody Payment payment) {
 
    System.out.println("payment.getBookingId :" + payment.getBookingId());
    System.out.println("payment.getPaymentId :" + payment.getPaymentId());
+
+   payment.setPaymentStatus("succeeded");
+   payment.setPaymentType("credit card");
 
    Long paymentId = paymentService.paymentInsert(payment);
 

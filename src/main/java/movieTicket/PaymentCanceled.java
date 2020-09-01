@@ -7,6 +7,7 @@ public class PaymentCanceled extends AbstractEvent {
     private Double totalPrice;
     private String paymentStatus;
     private String paymentType;
+    private Long seatId;
 
     public Long getBookingId() {
         return bookingId;
@@ -42,5 +43,13 @@ public class PaymentCanceled extends AbstractEvent {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public Long getSeatId() {
+        return seatId;
+    }
+
+    public void setSeatId(Long seatId) {
+        this.seatId = seatId;
     }
 }
