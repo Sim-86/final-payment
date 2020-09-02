@@ -11,6 +11,11 @@ public class PaymentService {
 
     // 예약에 대한 결재 정보 추가
     public Long paymentInsert(Payment payment) {
+        try {
+            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return paymentRepository.save(payment).getPaymentId();
 
     }
