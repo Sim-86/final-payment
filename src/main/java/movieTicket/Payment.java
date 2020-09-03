@@ -19,11 +19,33 @@ public class Payment {
 
     @PostPersist
     public void onPostPersist(){
-        PaymentSucceeded paymentSucceeded = new PaymentSucceeded();
-        BeanUtils.copyProperties(this, paymentSucceeded);
-        paymentSucceeded.publishAfterCommit();
+        // to do eventHandler 처리 후 주석 해제
+//        PaymentSucceeded paymentSucceeded = new PaymentSucceeded();
+//        BeanUtils.copyProperties(this, paymentSucceeded);
+//        paymentSucceeded.publishAfterCommit();
 
+        //Following code causes dependency to external APIs
+        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
+        movieTicket.external.Promotion promotion = new movieTicket.external.Promotion();
+        // mappings goes here
+
+        // mappings goes here
+        promotion.setPaymentId(this.getPaymentId());
+        promotion.setPaymentType(this.getPaymentType());
+    //    promotion.setPaymentType("card");
+
+        System.out.println("Payment 호출 : paymentId " + promotion.getPaymentId());
+        System.out.println("Payment 호출 : paymentType " + promotion.getPaymentType());
+
+        //Promotion.setId(this.set);
+        long discountRate = PaymentApplication.applicationContext.getBean(movieTicket.external.PromotionService.class)
+                .applyDiscount(promotion);
+        System.out.println("discountRate : " + discountRate);
+
+        SelectedDiscount selectedDiscount = new SelectedDiscount();
+        BeanUtils.copyProperties(this, selectedDiscount);
+        selectedDiscount.publishAfterCommit();
     }
 
     @PostUpdate
@@ -31,10 +53,7 @@ public class Payment {
         PaymentCanceled paymentCanceled = new PaymentCanceled();
         BeanUtils.copyProperties(this, paymentCanceled);
         paymentCanceled.publishAfterCommit();
-
-
     }
-
 
     public Long getPaymentId() {
         return paymentId;

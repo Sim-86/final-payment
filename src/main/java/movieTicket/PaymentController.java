@@ -24,7 +24,7 @@ import java.util.List;
    System.out.println("payment.getPaymentId :" + payment.getPaymentId());
    System.out.println("payment.getSeatID :" + payment.getSeatId());
    payment.setPaymentStatus("succeeded");
-   payment.setPaymentType("credit card");
+ //  payment.setPaymentType("credit card");
 
    Long paymentId = paymentService.paymentInsert(payment);
 

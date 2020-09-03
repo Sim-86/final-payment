@@ -1,7 +1,9 @@
 server:
   port: 8080
 ---
-
+api:
+  url:
+    promotion: http://localhost:8085
 spring:
   profiles: default
   h2:
@@ -41,7 +43,9 @@ logging:
 server:
   port: 8082
 ---
-
+api:
+  url:
+    promotion: http://promotion:8085
 spring:
   profiles: docker
   cloud:
